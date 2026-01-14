@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>회원목록</title>
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/member.css}">
+    </th:block>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="card list-card">
+            <div class="card-title">회원목록</div>
+
+            <table>
+                <tr>
+                    <th>번호</th>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>전화번호</th>
+                </tr>
+                <tr th:each="mem : ${list}">
+                    <td th:text="${mem.usernum}"></td>
+                    <td th:text="${mem.userid}"></td>
+                    <td th:text="${mem.username}"></td>
+                    <td th:text="${mem.usertell}"></td>
+                </tr>
+            </table>
+
+            <div class="pagination">
+                <a th:each="i : ${#numbers.sequence(0, totalPage-1)}"
+                   th:href="@{/memberoutgo(page=${i})}"
+                   th:text="${i+1}"></a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

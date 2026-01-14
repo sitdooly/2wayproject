@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<body>
+
+<div th:fragment="header">
+    <!-- 상단 타이틀 -->
+    <div class="site-title">
+        <h1 class="logo-text">2way영화관</h1>
+    </div>
+
+    <!-- 메뉴(navbar) -->
+    <div th:replace="~{top :: menu}"></div>
+</div>
+
+</body>
+</html>

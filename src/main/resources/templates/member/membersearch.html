@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>회원검색</title>
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/member.css}">
+    </th:block>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="card search-card">
+            <div class="card-title">회원검색</div>
+
+            <form th:action="@{/membersearchsave}" method="post">
+                <div class="form-group">
+                    <label>검색항목</label>
+                    <select name="mkey">
+                        <option value="userid">아이디</option>
+                        <option value="username">이름</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>검색어</label>
+                    <input type="text" name="mvalue">
+                </div>
+
+                <div class="btn-row">
+                    <button class="btn-search" type="submit">검색</button>
+                    <button class="btn-reset" type="reset">취소</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

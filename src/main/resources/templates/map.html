@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>오시는 길</title>
+
+    <style>
+        .map-wrap {
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        #map {
+            width: 100%;
+            height: 450px;
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+
+<div layout:fragment="content">
+    <div class="map-wrap">
+        <h2>오시는 길</h2>
+        <p>인천 부평구 광장로 16 부평역사쇼핑몰 6층</p>
+        <div id="map"></div>
+    </div>
+
+    <!-- ❗❗ 카카오 지도 SDK (자바스크립트 키 포함) -->
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=8342409e31a9f0053be2b11cd683c162&autoload=false&libraries=services"></script>
+
+    <script>
+        // 카카오 SDK 로딩 완료 후 실행
+        kakao.maps.load(function () {
+
+            // 1️⃣ 지도 생성 (임시 중심)
+            const map = new kakao.maps.Map(document.getElementById('map'), {
+                center: new kakao.maps.LatLng(37.5665, 126.9780),
+                level: 3
+            });
+
+            // 2️⃣ 주소 → 좌표 변환 객체
+            const geocoder = new kakao.maps.services.Geocoder();
+
+            // 3️⃣ 실제 주소
+            const address = "인천 부평구 광장로 16";
+
+            geocoder.addressSearch(address, function (result, status) {
+
+                if (status !== kakao.maps.services.Status.OK) {
+                    alert("주소 변환 실패");
+                    return;
+                }
+
+                const lat = result[0].y;
+                const lng = result[0].x;
+                const coords = new kakao.maps.LatLng(lat, lng);
+
+                // 4️⃣ 마커 표시
+                const marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords
+                });
+
+                // 5️⃣ 말풍선
+                const info = new kakao.maps.InfoWindow({
+                    content: '<div style="padding:8px;font-size:13px;">부평역사쇼핑몰 6층</div>'
+                });
+                info.open(map, marker);
+
+                // 6️⃣ 지도 중심 이동
+                map.setCenter(coords);
+            });
+        });
+    </script>
+</div>
+</html>
