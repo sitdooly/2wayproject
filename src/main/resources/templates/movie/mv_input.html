@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{top::menu}"></div>
+
+<body>
+
+<div class="container">
+    <h2>영화정보입력</h2>
+    <form th:action="mv_inputsave" method="post"enctype="multipart/form-data" >
+
+        <div class="form-group">
+            <label for="mdate">등록일자</label>
+            <input type="date" class="form-control" id="mdate" name="mdate">
+        </div>
+
+        <div class="form-group">
+            <label for="mtitle">영화제목</label>
+            <input type="text" class="form-control" id="mtitle" name="mtitle">
+        </div>
+
+        <div class="form-group">
+            <label for="mimage1">영화이미지</label>
+            <input type="file" class="form-control" id="mimage1" name="mimage1">
+        </div>
+
+        <div class="form-group">
+            <label for="mprice">영화가격</label>
+            <input type="text" class="form-control" id="mprice" name="mprice">
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">저장</button>
+    </form>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="~{top::menu}"></div>
+<form action="/updateSave" method="post" enctype="multipart/form-data">
+
+    <input type="hidden" name="mbunho" th:value="${movie.mbunho}">
+    <input type="hidden" name="oldimage" th:value="${movie.mimage}">
+
+    제목:
+    <input type="text" name="mtitle" th:value="${movie.mtitle}"><br>
+
+    가격:
+    <input type="number" name="mprice" th:value="${movie.mprice}"><br>
+
+    기존 이미지:
+    <img th:src="@{/image/{img}(img=${movie.mimage})}" width="80"><br>
+
+    새 이미지:
+    <input type="file" name="mimage1"><br>
+
+    <button type="submit">수정</button>
+</form>
+
+</body>
+</html>

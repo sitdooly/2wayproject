@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div th:replace="~{top::menu}"></div>
+<div class="container">
+    <h2>영화정보출력</h2>
+
+
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>등록일자</th>
+            <th>영화제목</th>
+            <th>영화이미지</th>
+            <th>영화가격</th>
+            <th>조회수</th>
+            <th>수정/삭제</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="mo:${list}">
+            <td th:text="${mo.mbunho}"></td>
+
+            <td th:text="${mo.mdate}"></td>
+            <td>
+                <a th:href="@{/detail(number=${mo.mbunho})}"
+                   th:text="${mo.mtitle}"></a>
+            </td>
+
+            <td>
+                <img th:src="@{'./image/' + ${mo.mimage}}" width="50px" height="50px">
+            </td>
+
+            <td th:text="${#numbers.formatInteger(mo.mprice, 3, 'COMMA') + '원'}"></td>
+            <td th:text="${mo.mreadcount}"></td>
+
+            <td>
+                <a th:href="@{/update(number=${mo.mbunho})}">수정</a>
+                /
+                <a th:href="@{/delete(number=${mo.mbunho},delimage=${mo.mimage})}">삭제</a>
+            </td>
+
+
+        </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <ul class="pagination">
+
+            <!-- 이전 -->
+            <li th:classappend="${nowpage == 1} ? 'disabled'">
+                <a th:href="@{/mv_outgo(page=${nowpage-2})}">«</a>
+            </li>
+
+            <!-- 페이지 번호 -->
+            <li th:each="i : ${#numbers.sequence(1, totalPage)}"
+                th:classappend="${i == nowpage} ? 'active'">
+                <a th:href="@{/mv_outgo(page=${i-1})}"
+                   th:text="${i}"></a>
+            </li>
+
+            <!-- 다음 -->
+            <li th:classappend="${nowpage == totalPage} ? 'disabled'">
+                <a th:href="@{/mv_outgo(page=${nowpage})}">»</a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+</div>
+</body>
+</html>

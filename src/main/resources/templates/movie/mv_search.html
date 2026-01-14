@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="~{top::menu}"></div>
+
+<form action="/searchgo1" method="post">
+    <table border="1" width="250px" align="center">
+        <caption>영화검색하러가기</caption>
+        <tr>
+            <th>검색항목</th>
+            <td>
+                <select name="mkey">
+                    <option value="mtitle">영화제목</option>
+                    <option value="mprice">가격</option>
+
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>검색값</th>
+            <td>
+                <input type="text" name="mvalue">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="전송">
+                <input type="button" value="취소" onclick="location.href='/'">
+
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
