@@ -23,11 +23,25 @@
         <p><b>답변</b></p>
         <p th:text="${dto.breply != null ? dto.breply : '아직 답변이 없습니다.'}"></p>
 
-        <br>
-        <a th:href="@{/board_all}" class="board-btn">목록으로</a>
+        <hr>
+
+        <a th:href="@{/board_updatego(bbunho=${dto.bbunho})}" class="board-btn">
+            ✏ 수정
+        </a>
+
+        <a th:href="@{/board_delete(bbunho=${dto.bbunho})}"
+           onclick="return confirm('정말 삭제할까요?')"
+           class="board-btn danger">
+            🗑 삭제
+        </a>
+
+        <a th:href="@{/board_outgo}" class="board-btn">
+            목록으로
+        </a>
 
     </div>
 </div>
+
 
 </body>
 </html>

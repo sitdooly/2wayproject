@@ -3,14 +3,19 @@ package com.example.twoway_movie.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "TWOWAY_MOVIE_BOARD")
-@Getter
-@Setter
+@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@SequenceGenerator(
+        name = "board_seq_generator",
+        sequenceName = "TWOWAY_MOVIE_BOARD_SEQ",
+        allocationSize = 1
+)
 public class BoardEntity {
 
     @Id
@@ -18,17 +23,22 @@ public class BoardEntity {
             strategy = GenerationType.SEQUENCE,
             generator = "board_seq_generator"
     )
-    @SequenceGenerator(
-            name = "board_seq_generator",
-            sequenceName = "TWOWAY_MOVIE_BOARD_SEQ",
-            allocationSize = 1
-    )
-    private Long bbunho;   // 문의번호 (시퀀스)
+    @Column(name = "BBUNHO")
+    private Long bbunho;
 
-    private String bname;  // 문의자명
+    @Column(name = "BNAME")
+    private String bname;
 
-    private LocalDate bdate; // 문의날짜
+    @Temporal(TemporalType.DATE)
+    @Column(name = "BDATE")
+    private Date bdate;
 
-    @Column(length = 1000)
-    private String bmemo;  // 문의내용
+    @Column(name = "BMEMO")
+    private String bmemo;
+
+    @Column(name = "BREPLY")
+    private String breply;
+
+    @Column(name = "BCATEGORY")
+    private String bcategory;
 }

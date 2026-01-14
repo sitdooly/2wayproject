@@ -1,6 +1,7 @@
 package com.example.twoway_movie.Service;
 
 import com.example.twoway_movie.DTO.BoardDTO;
+
 import java.util.List;
 
 public interface BoardService {
@@ -20,9 +21,10 @@ public interface BoardService {
     List<BoardDTO> selectByCategory(String category);
 
     List<BoardDTO> pagingAll(int page, int size);
+
     List<BoardDTO> pagingByCategory(String category, int page, int size);
 
     int countAll();
-    int countByCategory(String category);
 
+    int countByCategory(String category);
 }

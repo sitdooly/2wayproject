@@ -33,13 +33,18 @@
     </style>
 </head>
 <body>
+
 <div th:replace="~{top::menu}"></div>
+
 <h2>✏ 문의 수정</h2>
 
 <form th:action="@{/board_update}" method="post">
 
-    <!-- PK 유지 -->
+    <!-- ✅ PK 유지 (가장 중요) -->
     <input type="hidden" name="bbunho" th:value="${dto.bbunho}">
+
+    <!-- ✅ 카테고리 유지 (안 넘기면 NULL로 덮어짐) -->
+    <input type="hidden" name="bcategory" th:value="${dto.bcategory}">
 
     <label>작성자</label>
     <input type="text" name="bname" th:value="${dto.bname}" required>

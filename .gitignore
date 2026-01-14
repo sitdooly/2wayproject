@@ -35,3 +35,21 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# Gradle
+.gradle
+build/
+
+# IntelliJ
+.idea
+*.iml
+
+# OS
+.DS_Store
+
+# Logs
+*.log
+
+# DB 설정 (보안)
+src/main/resources/application.properties
+
