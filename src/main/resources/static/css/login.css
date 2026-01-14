@@ -1,0 +1,100 @@
+/* 전체 중앙 정렬 */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+/* 로그인 박스 */
+.login-box {
+  width: 400px;
+  padding: 30px;
+  border-radius: 16px;
+  background: #f7f9fc;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+/* 제목 */
+.login-box h1 {
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: 800;
+  color: #4a6fa5;
+}
+
+/* 입력 영역 */
+.form-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #5f6c7b;
+  margin-bottom: 6px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d0d7e2;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+/* 버튼 영역 */
+.btn-group {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-group button,
+.btn-group a {
+  flex: 1;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* 로그인 버튼 */
+.btn-login {
+  background: #a7c7e7;
+  color: #1f3c88;
+}
+
+/* 회원가입 버튼 */
+.btn-join {
+  background: #c1e1c1;
+  color: #245b2a;
+}
+
+/* 알림 메시지 */
+.alert {
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.alert.error {
+  background: #ffe5e5;
+  color: #c0392b;
+}
+
+.alert.logout {
+  background: #e8f0fe;
+  color: #1a73e8;
+}

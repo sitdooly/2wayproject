@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>문의사항 등록</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+</head>
+<body>
+
+<!-- 상단 메뉴 -->
+<div th:replace="top::menu"></div>
+
+<div class="board-page">
+    <div class="board-container">
+
+        <h2 class="board-title">📩 문의사항 등록</h2>
+        <p class="board-desc">
+            문의 내용을 작성해주시면 관리자가 확인 후 답변드립니다.
+        </p>
+
+        <form th:action="@{/board_inputgo}" method="post" class="board-form">
+
+            <!-- 문의자명 -->
+            <div class="form-group">
+                <label>작성자</label>
+                <input type="text" name="bname"
+                       placeholder="이름을 입력하세요"
+                       required>
+            </div>
+
+            <!-- 문의 유형 -->
+            <div class="form-group">
+                <label>문의 유형</label>
+                <select name="bcategory" required>
+                    <option value="">선택하세요</option>
+                    <option value="MOVIE">🎬 영화 문의</option>
+                    <option value="HOME">🏠 홈페이지 문의</option>
+                </select>
+            </div>
+
+            <!-- 문의 내용 -->
+            <div class="form-group">
+                <label>문의 내용</label>
+                <textarea name="bmemo" rows="6"
+                          placeholder="문의 내용을 입력하세요"
+                          required></textarea>
+            </div>
+
+            <!-- 버튼 -->
+            <div class="form-btns">
+                <button type="submit" class="board-btn primary">
+                    등록하기
+                </button>
+                <a th:href="@{/board_all}" class="board-btn cancel">
+                    목록으로
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

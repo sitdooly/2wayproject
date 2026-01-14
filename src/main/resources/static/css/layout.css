@@ -1,0 +1,142 @@
+/* ===== 전체 레이아웃 기본 ===== */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.layout-body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 컨텐츠가 늘어나고 footer는 아래로 */
+.layout-content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* ===== 상단 타이틀(로고 영역) ===== */
+.site-title {
+  padding: 16px 24px;
+  background: #ffffff;
+}
+
+.logo-text {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 800;
+  color: #111;
+}
+
+/* ===== 네비게이션 바 ===== */
+.nav-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#2b2b2b;
+  padding: 10px 16px;
+  color:#fff;
+}
+
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.nav-brand{
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+  padding: 8px 10px;
+}
+
+.nav-item{
+  color:#ddd;
+  text-decoration:none;
+  padding: 8px 10px;
+  cursor:pointer;
+}
+
+.nav-item:hover, .nav-brand:hover{
+  color:#fff;
+}
+
+/* 드롭다운 */
+.nav-dropdown{
+  position:relative;
+}
+
+.nav-dropdown-menu{
+  display:none;
+  position:absolute;
+  top: 36px;
+  left: 0;
+  background:#ffffff;
+  border:1px solid #ddd;
+  min-width:140px;
+  z-index:9999;
+  border-radius:8px;
+  overflow:hidden;
+}
+
+.nav-dropdown-menu a{
+  display:block;
+  padding:10px 12px;
+  text-decoration:none;
+  color:#222;
+  font-size:14px;
+}
+
+.nav-dropdown-menu a:hover{
+  background:#f2f2f2;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu{
+  display:block;
+}
+
+/* 오른쪽 로그인 영역 */
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+}
+
+.nav-right-item{
+  color:#ddd;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding: 8px 10px;
+}
+
+.login-user{
+  color:#fff;
+  font-weight:700;
+}
+
+.logout-link{
+  color:#ddd;
+  text-decoration:none;
+  padding-left:10px;
+  border-left:1px solid #555;
+}
+
+.logout-link:hover{
+  color:#fff;
+}
+
+/* ===== footer 아래 고정 ===== */
+.layout-footer{
+  background:#111;
+  color:#fff;
+  padding: 12px 20px;
+}
+
+.footer-inner{
+  text-align:center;
+  font-size:13px;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>회원검색 결과</title>
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/member.css}">
+    </th:block>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="card search-result-card">
+            <div class="card-title">회원검색 결과</div>
+
+            <table>
+                <tr>
+                    <th>아이디</th>
+                    <th>이름</th>
+                </tr>
+                <tr th:each="mem : ${list}">
+                    <td th:text="${mem.userid}"></td>
+                    <td th:text="${mem.username}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

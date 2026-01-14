@@ -1,17 +1,100 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org" th:fragment="menu">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:fragment="menu">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 
+
+<nav class="navbar navbar-inverse" th:fragment="menu">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">TOWWAY MOVIE</a>
+        </div>
+
 <nav class="navbar navbar-inverse">
+
+    <div class="container-fluid">
+
+        <!-- 로고 -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">TOWWAY MOVIE</a>
+        </div>
+
+        <!-- 왼쪽 메뉴 -->
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/">대시보드</a></li>
+
+            <!-- 영화관리 -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    영화관리 <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/mv_inputgo">영화정보입력</a></li>
+                    <li><a href="/mv_outgo">영화정보출력</a></li>
+                </ul>
+            </li>
+
+            <!-- 영화검색 -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="/mv_searchgo">
+                    영화검색 <span class="caret"></span>
+                </a>
+            </li>
+
+            <!-- 문의게시판 -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    문의게시판 <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/board_inputgo">문의사항등록</a></li>
+                    <li><a href="/board_outgo">문의답변확인</a></li>
+                </ul>
+            </li>
+
+            <!-- 오시는 길 -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    오시는 길 <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="/map_go">지도</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- 회원관리 -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    회원관리 <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+
+                    <!-- ✅ 누구나 보임 -->
+                    <li>
+                        <a href="/member_inputgo">회원정보입력</a>
+                    </li>
+
+                    <!-- ✅ 관리자만 보임 -->
+                    <li sec:authorize="hasRole('ADMIN')">
+                        <a href="/member_outgo">회원정보출력</a>
+                    </li>
+                    <li sec:authorize="hasRole('ADMIN')">
+                        <a href="/member_searchgo">회원정보검색</a>
+                    </li>
+
+                </ul>
+            </li>
+
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">TOWWAY MOVIE</a>
@@ -24,40 +107,96 @@
         <ul class="dropdown-menu">
           <li><a href="/mv_inputgo">영화정보입력</a></li>
           <li><a href="/mv_outgo">영화정보출력</a></li>
-          <li><a href="/mv_searchgo">영화정보검색</a></li>
         </ul>
       </li>
 
-      <!--문의게시판-->
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">문의게시판 <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="/board_inputgo">문의사항등록</a></li>
-          <li><a href="/board_outgo">문의답변확인</a></li>
-        </ul>
-      </li>
 
-      <!--오시는 길-->
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/map_go">오시는 길 <span class="caret"></span></a>
-      </li>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">대시보드</a></li>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    영화관리 <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/mv_inputgo">영화정보입력</a></li>
+                    <li><a href="/mv_outgo">영화정보출력</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="/mv_searchgo">영화검색</a>
+            </li>
+
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    문의게시판 <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/board_outgo">1:1문의</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="/map_go">오시는 길</a>
+            </li>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    회원관리 <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/member_inputgo">회원정보입력</a></li>
+                    <li><a href="/member_outgo">회원정보출력</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
+        </ul>
 
       <!--회원관리-->
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">회원관리 <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/member_inputgo">회원정보입력</a></li>
           <li><a href="/member_outgo">회원정보출력</a></li>
-          <li><a href="/member_searchgo">회원정보검색</a></li>
+
         </ul>
-      </li>
 
-    </ul>
+        <!-- 오른쪽 로그인/로그아웃 -->
+        <ul class="nav navbar-nav navbar-right">
 
-    <!--로그인 / 회원가입-->
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
-    </ul>
+            <!-- 로그인 안 했을 때 -->
+            <li sec:authorize="isAnonymous()">
+                <a href="/memberinputgo">
+                    <span class="glyphicon glyphicon-user"></span> 회원가입
+                </a>
+            </li>
+            <li sec:authorize="isAnonymous()">
+                <a href="/login">
+                    <span class="glyphicon glyphicon-log-in"></span> 로그인
+                </a>
+            </li>
 
-  </div>
+            <!-- 로그인 했을 때 -->
+            <li sec:authorize="isAuthenticated()">
+                <a href="#" style="cursor: default;">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    <span sec:authentication="name"></span>님 로그인중
+                </a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a href="/logout">
+                    <span class="glyphicon glyphicon-log-out"></span> 로그아웃
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
 </nav>
 
 </body>

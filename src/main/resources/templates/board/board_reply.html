@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>답글 작성</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+</head>
+<body>
+
+<div th:replace="top::menu"></div>
+
+<div class="board-page">
+    <div class="board-container">
+
+        <h2>답글 작성</h2>
+
+        <form th:action="@{/board_reply}" method="post">
+            <input type="hidden" name="bbunho" th:value="${dto.bbunho}">
+
+            <textarea name="breply" rows="6" style="width:100%;"
+                      placeholder="답변을 입력하세요"></textarea><br><br>
+
+            <button type="submit" class="board-btn">등록</button>
+            <a th:href="@{/board_all}" class="board-btn" style="background:#6b7280;">취소</a>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

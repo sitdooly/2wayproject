@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>문의 목록</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+</head>
+<body>
+
+<!-- 상단 탑바 -->
+<div th:replace="top::menu"></div>
+
+<!-- 🔥 문의 목록 전용 레이아웃 -->
+<div class="board-list-page">
+    <div class="board-list-container">
+
+        <!-- 제목 -->
+        <h2 class="board-title" th:text="${title}">
+            📋 전체 문의 목록
+        </h2>
+
+        <!-- 카테고리 탭 -->
+        <div class="board-tabs">
+            <a th:href="@{/board_all}"
+               th:classappend="${category=='ALL'} ? 'active'">
+                전체
+            </a>
+            <a th:href="@{/board_movie}"
+               th:classappend="${category=='MOVIE'} ? 'active'">
+                영화
+            </a>
+            <a th:href="@{/board_home}"
+               th:classappend="${category=='HOME'} ? 'active'">
+                홈페이지
+            </a>
+        </div>
+
+        <!-- ✅ 문의 등록 버튼 (반드시 존재해야 함) -->
+        <div class="board-actions">
+            <a th:href="@{/board_inputgo}" class="board-btn primary">
+                + 문의 등록
+            </a>
+        </div>
+
+        <!-- 목록 테이블 -->
+        <table class="board-table">
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>작성자</th>
+                <th>문의 내용</th>
+                <th>상태</th>
+                <th>관리</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="b : ${list}">
+                <td th:text="${b.bbunho}">1</td>
+
+                <td th:text="${b.bname}">작성자</td>
+
+                <td class="text-left">
+                    <a th:href="@{/board_detail(bbunho=${b.bbunho})}"
+                       th:text="${b.bmemo}">
+                        문의 내용
+                    </a>
+                </td>
+
+                <td>
+                    <span th:if="${b.breply != null}"
+                          class="badge ok">
+                        답변완료
+                    </span>
+                    <span th:if="${b.breply == null}"
+                          class="badge wait">
+                        대기중
+                    </span>
+                </td>
+
+                <td class="actions">
+                    <a th:href="@{/board_replygo(bbunho=${b.bbunho})}">
+                        답변
+                    </a>
+                    |
+                    <a th:href="@{/board_delete(bbunho=${b.bbunho})}"
+                       onclick="return confirm('삭제하시겠습니까?')">
+                        삭제
+                    </a>
+                </td>
+            </tr>
+
+            <!-- 데이터 없을 때 -->
+            <tr th:if="${#lists.isEmpty(list)}">
+                <td colspan="5">등록된 문의가 없습니다.</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- ✅ 페이징 -->
+        <div class="pagination"
+             th:if="${totalPage != null and totalPage > 1}">
+
+            <!-- 이전 -->
+            <a th:if="${page > 1}"
+               th:href="@{|?page=${page-1}|}"
+               class="page-btn">
+                ◀
+            </a>
+
+            <!-- 페이지 번호 -->
+            <a th:each="i : ${#numbers.sequence(1, totalPage)}"
+               th:href="@{|?page=${i}|}"
+               th:text="${i}"
+               th:classappend="${i == page} ? 'active'"
+               class="page-btn">
+            </a>
+
+            <!-- 다음 -->
+            <a th:if="${page < totalPage}"
+               th:href="@{|?page=${page+1}|}"
+               class="page-btn">
+                ▶
+            </a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

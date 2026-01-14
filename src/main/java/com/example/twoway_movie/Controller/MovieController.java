@@ -27,6 +27,7 @@ public class MovieController {
 
     // 메인
     @GetMapping("/")
+
     public String movie1() {
         return "main";
     }
@@ -150,4 +151,10 @@ public class MovieController {
         model.addAttribute("list",list);
         return "movie/mv_searchout";
     }
+
+    public String main() {
+        return "main";
+    }
+
+
 }
